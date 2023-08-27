@@ -53,7 +53,7 @@ pipeline {
 
      stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "jenkins-argocd"
+            GIT_REPO_NAME = "Devops-Sessions"
             GIT_USER_NAME = "panduranguser"
         }
         steps {
