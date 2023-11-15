@@ -62,7 +62,9 @@ pipeline {
                     git config user.name "paddy"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" jenkins-argocd/spring-boot-app-manifests/deployment.yml
+                    git add .
                     git add jenkins-argocd/spring-boot-app-manifests/deployment.yml
+            
                     git status
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
