@@ -16,5 +16,12 @@ pipeline {
 
       }
     }
+    stage('build and test')
+    {
+     steps{
+      sh 'ls -ltr'
+      sh 'cd jenkins-argocd/spring-boot-app && mvn clean package'
+     }
+    }
   }
 }
