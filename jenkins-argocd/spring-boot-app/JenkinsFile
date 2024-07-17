@@ -48,5 +48,24 @@ pipeline {
       }
       }
     }
+      stage('Update Deployment File') {
+        environment {
+            GIT_REPO_NAME = "Devops-Sessions"
+            GIT_USER_NAME = "panduranguser"
+        }
+        steps {
+            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                sh '''
+                    git config user.email "paddy@gmail.com"
+                    git config user.name "paddy"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" jenkins-argocd/spring-boot-app-manifests/deployment.yml
+                    git add jenkins-argocd/spring-boot-app-manifests/deployment.yml
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                '''
+            }
+        }
+    }
 }
 }
