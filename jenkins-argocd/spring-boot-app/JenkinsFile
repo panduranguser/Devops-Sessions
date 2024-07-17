@@ -8,15 +8,10 @@ pipeline {
   }
   stages
   {
-    stage('Clean Workspace') {
-            steps {
-                deleteDir() // Deletes the contents of the workspace
-            }
-        }
     stage('Checkout'){
       steps{
         
-       // git branch: 'master', url: 'https://github.com/panduranguser/Devops-Sessions.git' 
+        git branch: 'master', url: 'https://github.com/panduranguser/Devops-Sessions.git' 
         sh'echo passed'
 
       }
