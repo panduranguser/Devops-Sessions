@@ -16,7 +16,7 @@ pipeline {
     stage('Checkout'){
       steps{
         
-        git branch: 'master', url: 'https://github.com/panduranguser/Devops-Sessions.git' 
+       // git branch: 'master', url: 'https://github.com/panduranguser/Devops-Sessions.git' 
         sh'echo passed'
 
       }
