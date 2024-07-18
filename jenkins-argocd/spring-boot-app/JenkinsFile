@@ -59,7 +59,9 @@ pipeline {
                     git config user.email "paddy@gmail.com"
                     git config user.name "paddy"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" jenkins-argocd/spring-boot-app-manifests/deployment.yml
+                    echo "Content of deployment.yml before sed:"
+                    cat jenkins-argocd/spring-boot-app-manifests/deployment.yml
+                    sed -i "s|replaceImageTag|${BUILD_NUMBER}|g" jenkins-argocd/spring-boot-app-manifests/deployment.yml
                     echo "Content of deployment.yml after sed:"
                     cat jenkins-argocd/spring-boot-app-manifests/deployment.yml
                     git add .
